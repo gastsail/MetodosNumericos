@@ -8,13 +8,11 @@
 using namespace std;
 #include <math.h>
 
-double funcion(double x)
-{
+double funcion(double x){
     return sin(10 * x) - cos(3 * x); // Reemplazar por cualquier funcion
 }
 
-int main()
-{
+int main(){
     // xl,xu -> Intervalos de busqueda
     // xr -> Resultado de subdividir los intervalos para re evaluar la funcion achicando el intervalo
     // ea -> Error relativo porcentual ; es -> Valor previamente fijado
@@ -25,14 +23,12 @@ int main()
     cout << "Limite superior:" << flush;
     cin >> xu;
 
-    if (funcion(xl) == 0)
-    {
+    if (funcion(xl) == 0){
         cout << "xl es raiz: " << xl << endl;
         return 0;
     }
 
-    if (funcion(xu) == 0)
-    {
+    if (funcion(xu) == 0){
         cout << "xu es raiz: " << xu << endl;
         return 0;
     }
