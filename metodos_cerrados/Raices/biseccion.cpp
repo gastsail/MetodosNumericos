@@ -13,10 +13,10 @@ double funcion(double x){
 }
 
 int main(){
-    // xl,xu -> Intervalos de busqueda
+    // xl,xu -> Intervalos de busqueda [inferior,superior]
     // xr -> Resultado de subdividir los intervalos para re evaluar la funcion achicando el intervalo
-    // ea -> Error relativo porcentual ; es -> Valor previamente fijado
-    double xl, xu, xr, ea, es, anterior;
+    // ea -> Error relativo porcentual ; es -> Valor previamente fijado (TODO)
+    double xl, xu, xr, ea, es;
 
     cout << "Limite inferior:" << flush;
     cin >> xl;
@@ -39,15 +39,13 @@ int main(){
     }
 
     for (int i; i < 1000; i++){
-
+        
         xr = (xl + xu) / 2;
-        anterior = xr;
         if (funcion(xl) * funcion(xr) < 0){
             xu = xr;
         }else{
             xl = xr;
         }
-
         if (funcion(xl) * funcion(xr) == 0){
             break;
         }
