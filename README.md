@@ -9,7 +9,7 @@ Practice of algorithms that solves problems that cannot be solved analytically
 
 [en] Numerical Methods for Engineers by Steven C. Chapra
 
-## Licence
+## License
 ```
 The MIT License
 
