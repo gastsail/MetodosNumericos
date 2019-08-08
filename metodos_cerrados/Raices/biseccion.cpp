@@ -15,13 +15,20 @@ double funcion(double x){
 int main(){
     // xl,xu -> Intervalos de busqueda [inferior,superior]
     // xr -> Resultado de subdividir los intervalos para re evaluar la funcion achicando el intervalo
+    // Cantidad de iteraciones que se estima encontrar la raiz
     // ea -> Error relativo porcentual ; es -> Valor previamente fijado (TODO)
-    double xl, xu, xr, ea, es;
+    // xrold -> valor anterior de xr para calcular el error relativo porcentual
+    double xl, xu, xr, ea, es, xrold;
+    int it;
 
     cout << "Limite inferior:" << flush;
     cin >> xl;
     cout << "Limite superior:" << flush;
     cin >> xu;
+    cout << "Error: " << flush;
+    cin >> es;
+    cout << "Cantidad de iteraciones:" << flush;
+    cin >> it;
 
     if (funcion(xl) == 0){
         cout << "xl es raiz: " << xl << endl;
@@ -38,8 +45,8 @@ int main(){
         return 0;
     }
 
-    for (int i; i < 1000; i++){
-        
+    for (int i; i < it; i++){
+
         xr = (xl + xu) / 2;
         if (funcion(xl) * funcion(xr) < 0){
             xu = xr;
@@ -49,9 +56,16 @@ int main(){
         if (funcion(xl) * funcion(xr) == 0){
             break;
         }
-    }
+        ea = fabs((xr - xrold)/xr)*100;
+        xrold = xr;
 
+        if(ea < es){
+            it = i;
+            break;
+        }
+    }
     cout << "La raiz encontrada entre los intervalos es: " << xr << endl;
+    cout << "Cantidad de iteraciones realizadas: " << it << endl;
 
     return 0;
 }
