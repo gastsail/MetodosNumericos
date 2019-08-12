@@ -9,7 +9,7 @@ using namespace std;
 #include <math.h>
 
 double funcion(double x){
-    return sin(10 * x) - cos(3 * x); // Reemplazar por cualquier funcion
+    return pow(x,10) - 1; // Reemplazar por cualquier funcion
 }
 
 int main(){

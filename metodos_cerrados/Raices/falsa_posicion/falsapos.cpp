@@ -9,7 +9,7 @@ using namespace std;
 #include <math.h>
 
 double funcion(double x){
-    return sin(10 * x) - cos(3 * x); // Reemplazar por cualquier funcion
+    return ((9.8 * x) / 14 )*(1 - exp((-14/x)*7)); // Reemplazar por cualquier funcion
 }
 
 int main(){
@@ -47,7 +47,7 @@ int main(){
 
     for (int i; i < it; i++){
 
-        xr = xu - ((funcion(xu) * (xl - xu))/(funcion(xl)- funcion(xu)));
+        xr = xu - ((funcion(xu) * (xl - xu))/(funcion(xl) - funcion(xu)));
         if (funcion(xl) * funcion(xr) < 0){
             xu = xr;
         }else{
@@ -66,7 +66,7 @@ int main(){
     }
     cout << "La raiz encontrada entre los intervalos es: " << xr << endl;
     /* Podemos chequear en este punto que si evaluamos la funcion en los mismos intervalos [-0.5,0.5]
-     * que evaluamos con biseccion, que , efectivamente usamos la mitad de iteraciones que usamos con biseccion
+     * que evaluamos con biseccion, efectivamente usamos la mitad de iteraciones que usamos con biseccion
      * haciendo este metodo mas eficiente para encontrar la raiz */
     cout << "Cantidad de iteraciones realizadas: " << it << endl;
 
