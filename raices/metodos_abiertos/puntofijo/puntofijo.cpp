@@ -6,12 +6,12 @@ double fx(double x){
     return exp(-x) - x; // Reemplazar por cualquier funcion
 }
  // Usar si es necesario
-//double gx(double x){
-//  return fx(x) + x;
-//}
+double gx(double x){
+  return fx(x) + x;
+}
 
 double gp(double x){
-    return (fx(x + 0.01) - fx(x)) / 0.01; //Valor aproximado de G prima
+    return ((gx(x + 0.01) - gx(x)) / 0.01); //Valor aproximado de G prima
 }
 
 int main(){
@@ -30,9 +30,9 @@ int main(){
 
     for (int i = 0; i < iter; i++){
         xrold = xr;
-        xr = gp(xrold);
+        xr = gx(xrold);
 
-        if(fabs(xr) < 1){
+        if(fabs(gp(xrold)) < 1){
            ea = fabs((xr - xrold) / xr) * 100;
         }else{
             cout << "La derivada diverge y no se puede encontrar la raiz" << endl;
