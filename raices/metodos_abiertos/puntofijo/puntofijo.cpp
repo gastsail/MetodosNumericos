@@ -3,7 +3,7 @@ using namespace std;
 #include <math.h>
 
 double fx(double x){
-    return exp(-x) - x; // Reemplazar por cualquier funcion
+    return pow(x,2) + x - 4; // Reemplazar por cualquier funcion
 }
  // Usar si es necesario
 double gx(double x){
