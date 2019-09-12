@@ -13,13 +13,13 @@ int main(){
     //Matriz de prueba, leer matriz de archivo
     
     double mat[3][3] = {   //0  1   2
-                            {2, 1, -1}, // 0
+                            {0, 1, -1}, // 0
                             {3, -1, 2}, // 1
                             {-2, 1, 1}  // 2
                           };
     
        double matcpy[3][3] = {   //0  1   2
-                            {2, 1, -1}, // 0
+                            {0, 1, -1}, // 0
                             {3, -1, 2}, // 1
                             {-2, 1, 1}  // 2
                           };
@@ -31,22 +31,51 @@ int main(){
     int n = 3; // Tamaño de la matriz
     double factor;
     double xi[n]; // Valores finales para la solucion de la matriz
-    double sum;
+    double sum,aux;
+    double eps;
+    bool flag;
+
+    cout << "\n Ingresar el grado de exactitud para la solucion:\n";
+    cin >> eps;
 
     // Imprimimos la matriz
     printMatrix(mat);
 
-    // Reducimos la matriz, podemos poner j = k en el ultimo for para ver la triangulación superior
     int i,j,k;
-    for(k = 0 ; k < n; k++){
-        for(i = k + 1 ; i < n ; i++){
-            factor = mat[i][k] / mat[k][k]; // Primer pasada factor = mat[1][0] / mat[0,0] = 3/2
-            for(j = k+1; j < n; j++){
-                mat[i][j] = mat[i][j] - (factor * mat[k][j]); // mat[1][1] = mat[1][1] - 3/2 * mat[0][1]
+    for(i = 0 ; i < n; i++){
+        // Pivoteo
+        if(fabs(mat[i][i]) <= eps){
+            flag = false;
+            for(j = i+1 ; j < n ; j++){
+                if(fabs(mat[j][0]) >= eps){
+                    flag = true;
+                    for(k = 0 ; k < n ; k++){
+                        aux=mat[i][k];
+						mat[i][k]=mat[j][k];
+						mat[j][k]=aux;
+                    }
+                // Hacemos el mismo intercambio, pero para el vector
+                aux=b[i];
+				b[i]=b[j];
+				b[j]=aux;
+				break;
+                }
             }
-             b[i] = b[i] - (factor * b[k]);
+            if(flag==false) return -1;
+        }
+        // ------ Fin Pivoteo ------
+
+
+        // Hacemos las operaciones para triangular la matriz para luego poder obtener los resultados mediante sustitucion regresiva
+        for(int j = i + 1 ; j < n ; j++){
+            factor = mat[j][i] / mat[i][i]; 
+            for(int k = i; k < n; k++){ // Si se pone j = k, y ponemos printMatriz(mat) podemos ver la matriz triangulada
+                mat[j][k] = mat[j][k] - (factor * mat[i][k]);
+            }
+             b[j] = b[j] - (factor * b[i]);
         }
     }
+
 
     // Hacemos la sustitucion hacia atras para encontrar los valores de xi
     int p,o;
@@ -59,13 +88,17 @@ int main(){
         cout << "x"<< "" << p << ": " << xi[p] << endl;
     }
 
+
+
+    // Chequeamos si el resultado reemplazado da 0 haciendo la resta y de esa forma verificamos que los valores 
+    // de xi son correctos
     double s;
     for(int i = 0; i < n ; i++){
         s = -bcpy[i];
         for(int j = 0; j < n ; j++){
             s = s + matcpy[i][j] * xi[j];
         }
-        cout << "result" << s << endl;
+        cout << "result: " << s << endl;
     }
 
     printMatrix(mat);
