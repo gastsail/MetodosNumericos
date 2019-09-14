@@ -1,3 +1,6 @@
+// TODO FIX THIS WHOLE METHOD
+
+
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
