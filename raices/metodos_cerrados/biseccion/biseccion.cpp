@@ -9,7 +9,7 @@ using namespace std;
 #include <math.h>
 
 double funcion(double x){
-    return ((9.8 * x) / 14 )*(1 - exp((-14/x)*7)) - 35; // Reemplazar por cualquier funcion
+    return exp(-x) - x; // Reemplazar por cualquier funcion
 }
 
 int main(){
@@ -41,7 +41,7 @@ int main(){
     }
 
     if (funcion(xl) * funcion(xu) > 0){
-        cout << "Existe un numero par de raizes " << endl;
+        cout << "No hay raices o existe un numero par de ellas" << endl;
         return 0;
     }
 
@@ -64,6 +64,9 @@ int main(){
             break;
         }
     }
+    
+    cout.precision(10); // Cambiar la precision dependiendo que tan exacto querramos el resultado
+    cout.setf(ios::fixed);
     cout << "La raiz encontrada entre los intervalos es: " << xr << endl;
     cout << "Cantidad de iteraciones realizadas: " << it << endl;
 

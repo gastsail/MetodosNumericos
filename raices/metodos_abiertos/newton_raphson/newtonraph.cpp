@@ -3,7 +3,7 @@ using namespace std;
 #include <math.h>
 
 double fx(double x){
-    return log(x) - 1/x; // Reemplazar por cualquier funcion
+    return -2+6*x - 4*pow(x,2) + 0.5*pow(x,3); // Reemplazar por cualquier funcion
 }
 
 double fp(double x){

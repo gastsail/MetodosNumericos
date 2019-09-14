@@ -1,7 +1,7 @@
 /*
- * Método cerrado - Bisección
+ * Método cerrado - Falsa posicion
  * Dados dos intervalos xl y xu y una funcion f(x), encontrar la raiz
- * que encierra ese intervalo.
+ * que encierra ese intervalo. 
  */
 
 #include <iostream>
@@ -9,7 +9,7 @@ using namespace std;
 #include <math.h>
 
 double funcion(double x){
-    return log(x) - (1 - x) / log(x) + (1-x/1.66 - 1); // Reemplazar por cualquier funcion
+    return exp(-x) - x; // Reemplazar por cualquier funcion
 }
 
 int main(){
@@ -64,6 +64,8 @@ int main(){
             break;
         }
     }
+    cout.precision(10); // Cambiar la precision dependiendo que tan exacto querramos el resultado
+    cout.setf(ios::fixed);
     cout << "La raiz encontrada entre los intervalos es: " << xr << endl;
     /* Podemos chequear en este punto que si evaluamos la funcion en los mismos intervalos [-0.5,0.5]
      * que evaluamos con biseccion, efectivamente usamos la mitad de iteraciones que usamos con biseccion

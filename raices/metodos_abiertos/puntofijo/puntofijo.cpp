@@ -3,9 +3,9 @@ using namespace std;
 #include <math.h>
 
 double fx(double x){
-    return pow(x,2) + x - 4; // Reemplazar por cualquier funcion
+    return sin(sqrt(x)) - x; // Reemplazar por cualquier funcion
 }
- // Usar si es necesario
+// Usar el + x si es necesario
 double gx(double x){
   return fx(x) + x;
 }
